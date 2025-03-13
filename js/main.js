@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let songsData = [];
   let albumsData = [];
   let currentSongIndex = 0;
+  let audioPlayer = new Audio(); // Create audio element for song playback
+  let isPlaying = false;
   
   // Load songs data
   fetch('songs/songs.json')
@@ -114,8 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update the latest release section
     const albumCoverImg = document.querySelector('.album-cover img');
     if (albumCoverImg) {
-      // Use placeholder if actual cover is not available yet
-      albumCoverImg.src = albumCoverImg.src || 'https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER';
+      // Use the song's cover image if available
+      if (latestSong.coverPath) {
+        albumCoverImg.src = latestSong.coverPath;
+      } else {
+        albumCoverImg.src = 'https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER';
+      }
       albumCoverImg.alt = latestSong.title;
     }
     
@@ -152,10 +158,117 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update music player
         updateMusicPlayer(song);
         
+        // Play the song
+        playSong(song);
+        
         // Show music player modal
         musicPlayerModal.classList.add('show');
       });
     });
+  }
+  
+  // Play the selected song
+  function playSong(song) {
+    if (!song || !song.audioPath) return;
+    
+    // Stop any currently playing audio
+    audioPlayer.pause();
+    
+    // Set the new source
+    audioPlayer.src = song.audioPath;
+    
+    // Load and play the audio
+    audioPlayer.load();
+    
+    // Play the audio
+    const playPromise = audioPlayer.play();
+    
+    // Handle play promise rejection (browser policy may require user interaction)
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        // Playing successfully
+        isPlaying = true;
+        updatePlayPauseButton(true);
+      })
+      .catch(error => {
+        // Auto-play was prevented
+        console.error('Auto-play was prevented:', error);
+        isPlaying = false;
+        updatePlayPauseButton(false);
+      });
+    }
+    
+    // Set up audio event listeners
+    setupAudioEvents();
+  }
+  
+  // Set up audio event listeners
+  function setupAudioEvents() {
+    // Update progress bar as song plays
+    audioPlayer.addEventListener('timeupdate', updateProgress);
+    
+    // When song ends
+    audioPlayer.addEventListener('ended', function() {
+      isPlaying = false;
+      updatePlayPauseButton(false);
+      
+      // Optionally auto-play next track
+      // playNextTrack();
+    });
+    
+    // On audio loaded
+    audioPlayer.addEventListener('loadedmetadata', function() {
+      const duration = document.querySelector('.duration');
+      if (duration) {
+        duration.textContent = formatTime(audioPlayer.duration);
+      }
+    });
+    
+    // Handle loading errors
+    audioPlayer.addEventListener('error', function(e) {
+      console.error('Audio error:', e);
+      alert('Error loading audio file.');
+    });
+  }
+  
+  // Update progress bar
+  function updateProgress() {
+    const progress = document.querySelector('.progress');
+    const currentTime = document.querySelector('.current-time');
+    
+    if (progress && currentTime) {
+      // Calculate percentage played
+      const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+      progress.style.width = percent + '%';
+      
+      // Update current time display
+      currentTime.textContent = formatTime(audioPlayer.currentTime);
+    }
+  }
+  
+  // Format time from seconds to MM:SS
+  function formatTime(seconds) {
+    if (isNaN(seconds)) return '0:00';
+    
+    const minutes = Math.floor(seconds / 60);
+    const secondsRemainder = Math.floor(seconds % 60);
+    return `${minutes}:${secondsRemainder.toString().padStart(2, '0')}`;
+  }
+  
+  // Update play/pause button state
+  function updatePlayPauseButton(playing) {
+    const icon = playPauseBtn ? playPauseBtn.querySelector('i') : null;
+    if (!icon) return;
+    
+    if (playing) {
+      // Show pause icon
+      icon.classList.remove('fa-play');
+      icon.classList.add('fa-pause');
+    } else {
+      // Show play icon
+      icon.classList.remove('fa-pause');
+      icon.classList.add('fa-play');
+    }
   }
   
   // Update music player with song data
@@ -164,24 +277,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const trackArtist = document.querySelector('.track-artist');
     const duration = document.querySelector('.duration');
     const albumArt = document.querySelector('.player-album-art img');
+    const currentTime = document.querySelector('.current-time');
+    const progress = document.querySelector('.progress');
     
     if (trackTitle) trackTitle.textContent = song.title;
     if (trackArtist) trackArtist.textContent = 'SIN';
     if (duration) duration.textContent = song.duration;
-    
-    // Update album art if available
-    if (albumArt) {
-      albumArt.src = albumArt.src || 'https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER';
-      albumArt.alt = song.title;
-    }
-    
-    // Reset progress bar
-    const progress = document.querySelector('.progress');
+    if (currentTime) currentTime.textContent = '0:00';
     if (progress) progress.style.width = '0%';
     
-    // Reset current time
-    const currentTime = document.querySelector('.current-time');
-    if (currentTime) currentTime.textContent = '0:00';
+    // Update album art if available
+    if (albumArt && song.coverPath) {
+      albumArt.src = song.coverPath;
+      albumArt.alt = song.title;
+    }
   }
   
   // Play next track
@@ -198,6 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!song) return;
     
     updateMusicPlayer(song);
+    playSong(song);
   }
   
   // Play previous track
@@ -214,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!song) return;
     
     updateMusicPlayer(song);
+    playSong(song);
   }
   
   // Sticky Header
@@ -341,6 +452,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close Modal
   if (closeModal) {
     closeModal.addEventListener('click', function() {
+      // Pause the audio when closing the player
+      if (isPlaying) {
+        audioPlayer.pause();
+        isPlaying = false;
+        updatePlayPauseButton(false);
+      }
+      
       musicPlayerModal.classList.remove('show');
     });
   }
@@ -348,15 +466,22 @@ document.addEventListener('DOMContentLoaded', function() {
   // Play/Pause Toggle
   if (playPauseBtn) {
     playPauseBtn.addEventListener('click', function() {
-      const icon = this.querySelector('i');
-      
-      if (icon.classList.contains('fa-play')) {
-        icon.classList.remove('fa-play');
-        icon.classList.add('fa-pause');
+      if (isPlaying) {
+        // Pause the audio
+        audioPlayer.pause();
+        isPlaying = false;
       } else {
-        icon.classList.remove('fa-pause');
-        icon.classList.add('fa-play');
+        // Play the audio
+        audioPlayer.play().then(_ => {
+          // Successfully playing
+        }).catch(error => {
+          console.error('Error playing audio:', error);
+          alert('Could not play the audio. Please make sure your browser allows autoplay.');
+        });
+        isPlaying = true;
       }
+      
+      updatePlayPauseButton(isPlaying);
     });
   }
   
@@ -369,6 +494,42 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevBtn = document.querySelector('.control-btn.prev');
   if (prevBtn) {
     prevBtn.addEventListener('click', playPreviousTrack);
+  }
+  
+  // Progress bar click to seek
+  const progressBar = document.querySelector('.progress-bar');
+  if (progressBar) {
+    progressBar.addEventListener('click', function(e) {
+      if (!audioPlayer.src) return;
+      
+      // Calculate click position as percentage of bar width
+      const clickPositionInBar = e.offsetX;
+      const barWidth = this.clientWidth;
+      const percentage = clickPositionInBar / barWidth;
+      
+      // Set audio position
+      audioPlayer.currentTime = audioPlayer.duration * percentage;
+    });
+  }
+  
+  // Volume slider functionality
+  const volumeSlider = document.querySelector('.volume-slider');
+  if (volumeSlider) {
+    volumeSlider.addEventListener('click', function(e) {
+      // Calculate click position as percentage of slider width
+      const clickPositionInBar = e.offsetX;
+      const barWidth = this.clientWidth;
+      const percentage = clickPositionInBar / barWidth;
+      
+      // Set volume (0 to 1)
+      audioPlayer.volume = percentage;
+      
+      // Update volume bar display
+      const volumeBar = this.querySelector('.volume-bar');
+      if (volumeBar) {
+        volumeBar.style.width = (percentage * 100) + '%';
+      }
+    });
   }
   
   // Form Submissions
