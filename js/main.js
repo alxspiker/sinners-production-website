@@ -5,10 +5,216 @@ document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('.sticky-header');
   const hamburgerMenu = document.querySelector('.hamburger-menu');
   const nav = document.querySelector('nav ul');
-  const trackItems = document.querySelectorAll('.track-item');
+  const trackListContainer = document.querySelector('.tracks');
   const musicPlayerModal = document.getElementById('musicPlayerModal');
   const closeModal = document.querySelector('.close-modal');
   const playPauseBtn = document.querySelector('.play-pause');
+  
+  // Global variables
+  let songsData = [];
+  let albumsData = [];
+  let currentSongIndex = 0;
+  
+  // Load songs data
+  fetch('songs/songs.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      songsData = data.songs;
+      albumsData = data.albums;
+      renderTracks();
+      setupTrackEvents();
+      updateLatestRelease();
+    })
+    .catch(error => {
+      console.error('Error loading songs data:', error);
+      // Fallback to static tracks if JSON fails to load
+    });
+  
+  // Render tracks dynamically
+  function renderTracks() {
+    if (!trackListContainer) return;
+    
+    // Clear existing tracks
+    trackListContainer.innerHTML = '';
+    
+    // Filter songs by album (in this case, DARK MATTER EP)
+    const albumSongs = songsData.filter(song => song.album === 'DARK MATTER');
+    
+    // Sort by newest first
+    albumSongs.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+    
+    // Render each track
+    albumSongs.forEach((song, index) => {
+      const trackItem = document.createElement('div');
+      trackItem.className = 'track-item';
+      trackItem.dataset.songId = song.id;
+      trackItem.dataset.index = index;
+      
+      // Create track number
+      const trackNumber = document.createElement('div');
+      trackNumber.className = 'track-number';
+      trackNumber.textContent = (index + 1).toString().padStart(2, '0');
+      
+      // Create track info
+      const trackInfo = document.createElement('div');
+      trackInfo.className = 'track-info';
+      
+      const trackTitle = document.createElement('h4');
+      trackTitle.textContent = song.title;
+      
+      const trackAlbum = document.createElement('p');
+      trackAlbum.textContent = `SIN • ${song.album} EP`;
+      
+      trackInfo.appendChild(trackTitle);
+      trackInfo.appendChild(trackAlbum);
+      
+      // Create track time
+      const trackTime = document.createElement('div');
+      trackTime.className = 'track-time';
+      trackTime.textContent = song.duration;
+      
+      // Create play button
+      const trackPlay = document.createElement('div');
+      trackPlay.className = 'track-play';
+      trackPlay.innerHTML = '<i class="fas fa-play"></i>';
+      
+      // Add new badge if the song is new
+      if (song.isNew) {
+        const newBadge = document.createElement('div');
+        newBadge.className = 'new-badge';
+        newBadge.textContent = 'NEW';
+        trackItem.appendChild(newBadge);
+      }
+      
+      // Append all elements to track item
+      trackItem.appendChild(trackNumber);
+      trackItem.appendChild(trackInfo);
+      trackItem.appendChild(trackTime);
+      trackItem.appendChild(trackPlay);
+      
+      // Append track item to container
+      trackListContainer.appendChild(trackItem);
+    });
+  }
+  
+  // Update the latest release section
+  function updateLatestRelease() {
+    // Find the newest song
+    const latestSong = songsData.sort((a, b) => 
+      new Date(b.releaseDate) - new Date(a.releaseDate)
+    )[0];
+    
+    if (!latestSong) return;
+    
+    // Update the latest release section
+    const albumCoverImg = document.querySelector('.album-cover img');
+    if (albumCoverImg) {
+      // Use placeholder if actual cover is not available yet
+      albumCoverImg.src = albumCoverImg.src || 'https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER';
+      albumCoverImg.alt = latestSong.title;
+    }
+    
+    const releaseTitle = document.querySelector('.release-info h3');
+    if (releaseTitle) {
+      releaseTitle.textContent = latestSong.album;
+    }
+    
+    const releaseDescription = document.querySelector('.release-info .description');
+    if (releaseDescription) {
+      // Find the album description
+      const album = albumsData.find(album => album.id === latestSong.albumId);
+      if (album) {
+        releaseDescription.textContent = album.description;
+      }
+    }
+  }
+  
+  // Setup track events after rendering
+  function setupTrackEvents() {
+    const trackItems = document.querySelectorAll('.track-item');
+    
+    trackItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const songId = this.dataset.songId;
+        const index = parseInt(this.dataset.index);
+        
+        // Find the song in our data
+        const song = songsData.find(s => s.id === songId);
+        if (!song) return;
+        
+        currentSongIndex = index;
+        
+        // Update music player
+        updateMusicPlayer(song);
+        
+        // Show music player modal
+        musicPlayerModal.classList.add('show');
+      });
+    });
+  }
+  
+  // Update music player with song data
+  function updateMusicPlayer(song) {
+    const trackTitle = document.querySelector('.track-title');
+    const trackArtist = document.querySelector('.track-artist');
+    const duration = document.querySelector('.duration');
+    const albumArt = document.querySelector('.player-album-art img');
+    
+    if (trackTitle) trackTitle.textContent = song.title;
+    if (trackArtist) trackArtist.textContent = 'SIN';
+    if (duration) duration.textContent = song.duration;
+    
+    // Update album art if available
+    if (albumArt) {
+      albumArt.src = albumArt.src || 'https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER';
+      albumArt.alt = song.title;
+    }
+    
+    // Reset progress bar
+    const progress = document.querySelector('.progress');
+    if (progress) progress.style.width = '0%';
+    
+    // Reset current time
+    const currentTime = document.querySelector('.current-time');
+    if (currentTime) currentTime.textContent = '0:00';
+  }
+  
+  // Play next track
+  function playNextTrack() {
+    const tracks = document.querySelectorAll('.track-item');
+    if (tracks.length === 0) return;
+    
+    currentSongIndex = (currentSongIndex + 1) % tracks.length;
+    const nextTrack = tracks[currentSongIndex];
+    if (!nextTrack) return;
+    
+    const songId = nextTrack.dataset.songId;
+    const song = songsData.find(s => s.id === songId);
+    if (!song) return;
+    
+    updateMusicPlayer(song);
+  }
+  
+  // Play previous track
+  function playPreviousTrack() {
+    const tracks = document.querySelectorAll('.track-item');
+    if (tracks.length === 0) return;
+    
+    currentSongIndex = (currentSongIndex - 1 + tracks.length) % tracks.length;
+    const prevTrack = tracks[currentSongIndex];
+    if (!prevTrack) return;
+    
+    const songId = prevTrack.dataset.songId;
+    const song = songsData.find(s => s.id === songId);
+    if (!song) return;
+    
+    updateMusicPlayer(song);
+  }
   
   // Sticky Header
   window.addEventListener('scroll', function() {
@@ -22,14 +228,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Mobile Menu Toggle
-  hamburgerMenu.addEventListener('click', function() {
-    nav.classList.toggle('show');
-    hamburgerMenu.classList.toggle('active');
-    
-    // Transform hamburger to X
-    const bars = hamburgerMenu.querySelectorAll('.bar');
-    bars.forEach(bar => bar.classList.toggle('animate'));
-  });
+  if (hamburgerMenu) {
+    hamburgerMenu.addEventListener('click', function() {
+      nav.classList.toggle('show');
+      hamburgerMenu.classList.toggle('active');
+      
+      // Transform hamburger to X
+      const bars = hamburgerMenu.querySelectorAll('.bar');
+      bars.forEach(bar => bar.classList.toggle('animate'));
+    });
+  }
   
   // Add CSS for mobile menu and animation
   const style = document.createElement('style');
@@ -79,6 +287,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     }
+    
+    /* Styling for new badge */
+    .new-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: var(--primary-color);
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    
+    /* Position the track item relatively for the badge */
+    .track-item {
+      position: relative;
+    }
   `;
   document.head.appendChild(style);
   
@@ -112,40 +338,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Track Item Click (Music Player)
-  trackItems.forEach(item => {
-    item.addEventListener('click', function() {
-      const trackTitle = this.querySelector('.track-info h4').textContent;
-      const trackArtist = 'SIN';
-      const trackDuration = this.querySelector('.track-time').textContent;
-      
-      // Update music player
-      document.querySelector('.track-title').textContent = trackTitle;
-      document.querySelector('.track-artist').textContent = trackArtist;
-      document.querySelector('.duration').textContent = trackDuration;
-      
-      // Show music player modal
-      musicPlayerModal.classList.add('show');
-    });
-  });
-  
   // Close Modal
-  closeModal.addEventListener('click', function() {
-    musicPlayerModal.classList.remove('show');
-  });
+  if (closeModal) {
+    closeModal.addEventListener('click', function() {
+      musicPlayerModal.classList.remove('show');
+    });
+  }
   
   // Play/Pause Toggle
-  playPauseBtn.addEventListener('click', function() {
-    const icon = this.querySelector('i');
-    
-    if (icon.classList.contains('fa-play')) {
-      icon.classList.remove('fa-play');
-      icon.classList.add('fa-pause');
-    } else {
-      icon.classList.remove('fa-pause');
-      icon.classList.add('fa-play');
-    }
-  });
+  if (playPauseBtn) {
+    playPauseBtn.addEventListener('click', function() {
+      const icon = this.querySelector('i');
+      
+      if (icon.classList.contains('fa-play')) {
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+      } else {
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+      }
+    });
+  }
+  
+  // Next/Previous buttons in music player
+  const nextBtn = document.querySelector('.control-btn.next');
+  if (nextBtn) {
+    nextBtn.addEventListener('click', playNextTrack);
+  }
+  
+  const prevBtn = document.querySelector('.control-btn.prev');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', playPreviousTrack);
+  }
   
   // Form Submissions
   const contactForm = document.querySelector('.contact-form');
@@ -232,6 +456,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .track-item:nth-child(2) { transition-delay: 0.2s; }
     .track-item:nth-child(3) { transition-delay: 0.3s; }
     .track-item:nth-child(4) { transition-delay: 0.4s; }
+    .track-item:nth-child(5) { transition-delay: 0.5s; }
     
     .show-item:nth-child(1) { transition-delay: 0.1s; }
     .show-item:nth-child(2) { transition-delay: 0.2s; }
