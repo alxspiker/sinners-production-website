@@ -7,7 +7,7 @@ This directory will contain the following images:
 1. **Hero Background (hero-bg.jpg)**  
    - A dark, atmospheric background image for the hero section
    - Size: 1920x1080px
-   - Currently using placeholder: `https://via.placeholder.com/1920x1080/1a1a1a/ff0000?text=KRONOS+`
+   - Currently using placeholder: `https://via.placeholder.com/1920x1080/1a1a1a/ff0000?text=SIN+`
 
 2. **Album Cover (album-cover.jpg)**  
    - Square album art for "DARK MATTER" EP
@@ -15,9 +15,9 @@ This directory will contain the following images:
    - Currently using placeholder: `https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER`
 
 3. **Artist Photo (artist.jpg)**  
-   - Professional photo of KRONOS (could feature a mask or silhouette to maintain mysterious identity)
+   - Professional photo of SIN (could feature a mask or silhouette to maintain mysterious identity)
    - Size: 600x800px
-   - Currently using placeholder: `https://via.placeholder.com/600x800/1a1a1a/ff0000?text=KRONOS`
+   - Currently using placeholder: `https://via.placeholder.com/600x800/1a1a1a/ff0000?text=SIN`
 
 4. **Newsletter Background (newsletter-bg.jpg)**  
    - Dark background image for newsletter section
