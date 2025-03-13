@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discography | SIN</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/discography.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Sticky Header -->
+  <header class="sticky-header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">SIN</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#music">Music</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#performances">Shows</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Discography Section -->
+  <section class="discography-section">
+    <div class="container">
+      <h1 class="page-title">Discography</h1>
+      
+      <div class="filter-controls">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search tracks...">
+          <button id="searchButton" class="btn-icon"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ep">EPs</button>
+          <button class="filter-btn" data-filter="single">Singles</button>
+          <button class="filter-btn" data-filter="featured">Featured</button>
+        </div>
+        
+        <div class="sort-container">
+          <label for="sortSelect">Sort by:</label>
+          <select id="sortSelect">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="name-az">Name (A-Z)</option>
+            <option value="name-za">Name (Z-A)</option>
+            <option value="plays">Most Played</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="albums-container" id="albumsContainer">
+        <!-- Albums will be dynamically loaded here -->
+        <div class="loading-indicator">
+          <div class="spinner"></div>
+          <p>Loading albums...</p>
+        </div>
+      </div>
+      
+      <div class="tracks-container" id="tracksContainer">
+        <!-- Tracks will be dynamically loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="index.html">SIN</a>
+          <p>Sinner's Production</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-nav">
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="index.html#music">Music</a></li>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#performances">Shows</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-socials">
+            <h3>Follow</h3>
+            <div class="social-links">
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+            </div>
+          </div>
+          <div class="footer-legal">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Sinner's Production. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Popup/Modal for Music Player -->
+  <div class="music-player-modal" id="musicPlayerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Now Playing</h3>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="player-album-art">
+          <img src="https://via.placeholder.com/500x500/1a1a1a/ff0000?text=DARK+MATTER" alt="Album Cover">
+        </div>
+        <div class="player-info">
+          <h4 class="track-title">Shadow Realm</h4>
+          <p class="track-artist">SIN</p>
+        </div>
+        <div class="player-controls">
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+            <div class="time-info">
+              <span class="current-time">0:00</span>
+              <span class="duration">3:45</span>
+            </div>
+          </div>
+          <div class="control-buttons">
+            <button class="control-btn shuffle"><i class="fas fa-random"></i></button>
+            <button class="control-btn prev"><i class="fas fa-step-backward"></i></button>
+            <button class="control-btn play-pause"><i class="fas fa-play"></i></button>
+            <button class="control-btn next"><i class="fas fa-step-forward"></i></button>
+            <button class="control-btn repeat"><i class="fas fa-redo"></i></button>
+          </div>
+          <div class="volume-control">
+            <i class="fas fa-volume-up"></i>
+            <div class="volume-slider">
+              <div class="volume-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/discography.js"></script>
+</body>
+</html>
