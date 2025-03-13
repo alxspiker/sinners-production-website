@@ -1,6 +1,6 @@
 # Sinner's Production Website
 
-Official website for independent music artist KRONOS under the Sinner's Production label.
+Official website for independent music artist SIN under the Sinner's Production label.
 
 ## Features
 
