@@ -41,7 +41,11 @@
       "coverPath": "songs/covers/shadow-realm.jpg",
       "audioPath": "songs/audio/shadow-realm.mp3",
       "lyrics": {
-        "placeholder": "Full lyrics coming soon..."
+        "verse1": "Step into the shadow realm, where nightmares become real\nWhere darkness has a presence that you actually can feel\nThe boundary blurs between what's true and what's pretend\nA labyrinth of twisted thoughts that never seem to end",
+        "chorus": "Shadow realm, shadow realm\nWhere the darkness comes alive\nShadow realm, shadow realm\nWill I make it out alive?",
+        "verse2": "Entities of darkness lurk beyond the veil of light\nWhispering temptations in the silence of the night\nI walk this path alone, no compass and no guide\nBattling the demons that are raging deep inside",
+        "bridge": "Lost between dimensions\nTrapped between the worlds\nNeither dead nor living\nAs the void unfurls",
+        "verse3": "Each step I take is heavier, the air is thick with dread\nThe voices of the fallen echo loudly in my head\nBut somewhere in this darkness, there's a power to be found\nPerhaps the only way out is to sink beneath the ground"
       },
       "description": "A haunting journey through the shadow realm, where reality blurs with nightmare."
     },
@@ -104,6 +108,137 @@
         "placeholder": "Full lyrics coming soon..."
       },
       "description": "The final glimmers of hope before darkness envelops everything."
+    },
+    {
+      "id": "fractured-mirrors",
+      "title": "Fractured Mirrors",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "INNER DEMONS",
+      "albumId": "inner-demons",
+      "duration": "3:55",
+      "tags": ["Rap", "Introspective", "Identity"],
+      "releaseDate": "2024-11-10T09:00:00",
+      "isNew": false,
+      "version": "v2",
+      "plays": 328,
+      "coverPath": "songs/covers/fractured-mirrors.jpg",
+      "audioPath": "songs/audio/fractured-mirrors.mp3",
+      "lyrics": {
+        "verse1": "Staring into mirrors, fractured and cracked\nA thousand reflections, distorted and hacked\nWhich one's real, which one's me?\nThey all look the same, yet different to me",
+        "chorus": "Fractured mirrors show the truth\nBroken pieces of a shattered youth\nWhich reflection is really you?\nWhen every shard reflects something new",
+        "verse2": "The masks I wear, layers so deep\nPersonas I've crafted, secrets I keep\nBehind each reflection, a different face\nFragments of a soul lost in space",
+        "bridge": "Put the pieces back together\nBut they never fit quite right\nThe cracks remain forever\nRevealing what we hide",
+        "verse3": "Splintered identity, scattered and strewn\nCollect the fragments under the moon\nAssemble the puzzle, but pieces are gone\nLeft with a portrait that's never quite done"
+      },
+      "description": "An exploration of fragmented identity and the masks we wear to hide our true selves."
+    },
+    {
+      "id": "ghost-town",
+      "title": "Ghost Town",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "INNER DEMONS",
+      "albumId": "inner-demons",
+      "duration": "4:02",
+      "tags": ["Rap", "Isolation", "Abandonment"],
+      "releaseDate": "2024-11-10T09:00:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 287,
+      "coverPath": "songs/covers/ghost-town.jpg",
+      "audioPath": "songs/audio/ghost-town.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "A meditation on isolation and abandonment in the midst of a crowded world."
+    },
+    {
+      "id": "demons-whisper",
+      "title": "Demons Whisper",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "INNER DEMONS",
+      "albumId": "inner-demons",
+      "duration": "3:48",
+      "tags": ["Rap", "Haunting", "Mental Health"],
+      "releaseDate": "2024-11-10T09:00:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 312,
+      "coverPath": "songs/covers/demons-whisper.jpg",
+      "audioPath": "songs/audio/demons-whisper.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "The constant dialogue with the darker aspects of one's psyche."
+    },
+    {
+      "id": "echo-chamber",
+      "title": "Echo Chamber",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "INNER DEMONS",
+      "albumId": "inner-demons",
+      "duration": "4:17",
+      "tags": ["Rap", "Psychological", "Repetition"],
+      "releaseDate": "2024-11-10T09:00:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 265,
+      "coverPath": "songs/covers/echo-chamber.jpg",
+      "audioPath": "songs/audio/echo-chamber.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "Trapped in the repeating cycle of self-reinforcing thoughts and beliefs."
+    },
+    {
+      "id": "red-static",
+      "title": "Red Static",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "STATIC",
+      "albumId": "static",
+      "duration": "3:32",
+      "tags": ["Rap", "Experimental", "Electronic"],
+      "releaseDate": "2024-07-15T14:30:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 507,
+      "coverPath": "songs/covers/red-static.jpg",
+      "audioPath": "songs/audio/red-static.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "The chaos and noise that fills the void between meaningful connections."
+    },
+    {
+      "id": "digital-void",
+      "title": "Digital Void",
+      "artist": "SIN",
+      "featured": "KRYPT0",
+      "label": "Sinners Production",
+      "album": "STATIC",
+      "albumId": "static",
+      "duration": "4:11",
+      "tags": ["Rap", "Collaboration", "Technological"],
+      "releaseDate": "2024-07-15T14:30:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 622,
+      "isFeatured": true,
+      "coverPath": "songs/covers/digital-void.jpg",
+      "audioPath": "songs/audio/digital-void.mp3",
+      "lyrics": {
+        "intro": "SIN: Lost in the binary, where existence blurs\nZeros and ones, that's all that occurs\nKRYPT0: In this digital void, we're all just code\nFragment by fragment, our souls erode",
+        "verse1": "SIN: Trapped in the system, a digital ghost\nDisconnected from reality, what I fear the most\nScrolling through lives, none of them mine\nPerfect curations that serve as a shrine\nTo the people we wish that we actually were\nWhile our true selves fade into a digital blur",
+        "chorus": "We're lost in the digital void\nHuman connection destroyed\nReal life's the app we avoid\nWe're lost in the digital void",
+        "verse2": "KRYPT0: Algorithm masters control what we see\nCurating our thoughts, though we think we're free\nAddicted to loops of endless content\nNotifications pull us wherever we went\nBlurred lines between what's real and what's fake\nIn this virtual world, what's truly at stake?",
+        "bridge": "SIN: Can you feel me through the screen?\nKRYPT0: Are we closer than we seem?\nBOTH: Or just avatars in a broken dream?",
+        "verse3": "SIN: Digital footprints that never fade\nPermanent records of mistakes we've made\nKRYPT0: Privacy's fiction in this new age\nOur data's the product, we're locked in the cage\nBOTH: But somewhere beneath all the noise and the haze\nA human connection could still be salvaged"
+      },
+      "description": "A collaboration with underground artist KRYPT0 examining digital alienation and the loss of genuine human connection in the technological age."
     }
   ],
   "albums": [
@@ -117,6 +252,28 @@
       "trackCount": 5,
       "type": "EP",
       "description": "A journey through beats and rhymes exploring the hidden forces that shape our universe."
+    },
+    {
+      "id": "inner-demons",
+      "title": "INNER DEMONS",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "releaseDate": "2024-11-10T09:00:00",
+      "coverPath": "songs/covers/inner-demons-album.jpg",
+      "trackCount": 4,
+      "type": "EP",
+      "description": "A deep dive into the psychological landscape of internal struggles and personal demons."
+    },
+    {
+      "id": "static",
+      "title": "STATIC",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "releaseDate": "2024-07-15T14:30:00",
+      "coverPath": "songs/covers/static-album.jpg",
+      "trackCount": 2,
+      "type": "Single",
+      "description": "A short, experimental release exploring themes of disconnection and digital noise."
     }
   ]
 }
