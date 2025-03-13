@@ -1,0 +1,122 @@
+{
+  "songs": [
+    {
+      "id": "endless-abyss",
+      "title": "Endless Abyss",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "DARK MATTER",
+      "albumId": "dark-matter",
+      "duration": "3:45",
+      "tags": ["Rap", "Sad", "Depressing", "Heartbroken", "Violin", "Pain"],
+      "releaseDate": "2025-03-13T16:42:00",
+      "isNew": true,
+      "version": "v4",
+      "plays": 21,
+      "coverPath": "songs/covers/endless-abyss.jpg",
+      "audioPath": "songs/audio/endless-abyss.mp3",
+      "lyrics": {
+        "verse1": "The city bleeds neon, a sickly, pale glow\nReflecting the emptiness, where shadows grow\nMy pulse a dull echo, a rhythmic decay\nAnother night haunted, where demons hold sway\nThe taste of cold metal, a phantom on my tongue\nA silent confession, a battle unsung.",
+        "chorus": "The wires are frayed, a sparking, dark mess\nDepression's a black hole, an endless abyss\nPTSD's a wildfire, consuming the mind\nAnxiety's a serpent, its coils tightly entwined\nHeartbreak's a graveyard, where hope lies interred\nA hollow existence, a life unheard.",
+        "verse2": "The mirror reflects back, a stranger's cold stare\nEyes hollow and vacant, a burden to bear\nEach breath a sharp razor, slicing through the air\nA constant reminder, of all that's unfair\nThe whispers grow louder, they claw and they bite\nDragging me deeper, into the endless night.",
+        "bridge": "There's no salvation, no light to be found\nJust the crushing weight, of hallowed ground\nThe memories fester, a poisoned, dark seed\nPlanting despair, fulfilling a need\nTo sink into nothing, to simply erase\nThe pain of existence, the desolate space.",
+        "verse3": "The walls are closing, the air grows so thin\nA suffocating darkness, where shadows begin\nTo dance and to mock me, with cruel, twisted glee\nA symphony of madness, eternally free\nThe weight of the world, a crushing embrace\nLeaving me broken, without a trace.",
+        "outro": "No light, no escape, just the endless descent\nA final surrender, where life is misspent.\nA silent departure, a fading away\nLost in the darkness, where shadows hold sway."
+      },
+      "description": "A journey through the depths of depression and anxiety, exploring the dark corners of the mind."
+    },
+    {
+      "id": "shadow-realm",
+      "title": "Shadow Realm",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "DARK MATTER",
+      "albumId": "dark-matter",
+      "duration": "3:45",
+      "tags": ["Rap", "Dark", "Atmospheric"],
+      "releaseDate": "2025-03-01T12:00:00",
+      "isNew": false,
+      "version": "v2",
+      "plays": 176,
+      "coverPath": "songs/covers/shadow-realm.jpg",
+      "audioPath": "songs/audio/shadow-realm.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "A haunting journey through the shadow realm, where reality blurs with nightmare."
+    },
+    {
+      "id": "midnight-vision",
+      "title": "Midnight Vision",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "DARK MATTER",
+      "albumId": "dark-matter",
+      "duration": "4:21",
+      "tags": ["Rap", "Dark", "Visionary"],
+      "releaseDate": "2025-03-01T12:00:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 129,
+      "coverPath": "songs/covers/midnight-vision.jpg",
+      "audioPath": "songs/audio/midnight-vision.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "Visions that appear only in the darkest hours, when the mind is most vulnerable."
+    },
+    {
+      "id": "crimson-tide",
+      "title": "Crimson Tide",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "DARK MATTER",
+      "albumId": "dark-matter",
+      "duration": "3:18",
+      "tags": ["Rap", "Intense", "Aggressive"],
+      "releaseDate": "2025-03-01T12:00:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 145,
+      "coverPath": "songs/covers/crimson-tide.jpg",
+      "audioPath": "songs/audio/crimson-tide.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "A tidal wave of emotion crashes over you, painted in shades of crimson."
+    },
+    {
+      "id": "last-light",
+      "title": "Last Light",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "album": "DARK MATTER",
+      "albumId": "dark-matter",
+      "duration": "5:07",
+      "tags": ["Rap", "Melancholic", "Reflective"],
+      "releaseDate": "2025-03-01T12:00:00",
+      "isNew": false,
+      "version": "v1",
+      "plays": 112,
+      "coverPath": "songs/covers/last-light.jpg",
+      "audioPath": "songs/audio/last-light.mp3",
+      "lyrics": {
+        "placeholder": "Full lyrics coming soon..."
+      },
+      "description": "The final glimmers of hope before darkness envelops everything."
+    }
+  ],
+  "albums": [
+    {
+      "id": "dark-matter",
+      "title": "DARK MATTER",
+      "artist": "SIN",
+      "label": "Sinners Production",
+      "releaseDate": "2025-03-01T12:00:00",
+      "coverPath": "songs/covers/dark-matter-album.jpg",
+      "trackCount": 5,
+      "type": "EP",
+      "description": "A journey through beats and rhymes exploring the hidden forces that shape our universe."
+    }
+  ]
+}
