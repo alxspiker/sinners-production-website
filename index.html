@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIN | Sinner's Production</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/discography.css">
+  <link rel="stylesheet" href="css/song.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +17,13 @@
   <header class="sticky-header">
     <div class="container">
       <div class="logo">
-        <a href="index.html">SIN</a>
+        <a href="#home">SIN</a>
       </div>
       <nav>
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#music">Music</a></li>
+          <li><a href="#discography">Discography</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#performances">Shows</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -80,7 +83,128 @@
           <!-- Track items will be dynamically loaded from songs.json -->
         </div>
         <div class="view-all-container">
-          <a href="discography.html" class="view-all">View Full Discography <i class="fas fa-arrow-right"></i></a>
+          <a href="#discography" class="view-all">View Full Discography <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discography Section -->
+  <section id="discography" class="discography-section">
+    <div class="container">
+      <h2 class="section-title">Discography</h2>
+      
+      <div class="filter-controls">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search tracks...">
+          <button id="searchButton" class="btn-icon"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ep">EPs</button>
+          <button class="filter-btn" data-filter="single">Singles</button>
+          <button class="filter-btn" data-filter="featured">Featured</button>
+        </div>
+        
+        <div class="sort-container">
+          <label for="sortSelect">Sort by:</label>
+          <select id="sortSelect">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="name-az">Name (A-Z)</option>
+            <option value="name-za">Name (Z-A)</option>
+            <option value="plays">Most Played</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="albums-container" id="albumsContainer">
+        <!-- Albums will be dynamically loaded here -->
+        <div class="loading-indicator">
+          <div class="spinner"></div>
+          <p>Loading albums...</p>
+        </div>
+      </div>
+      
+      <div class="tracks-container" id="tracksContainer">
+        <!-- Tracks will be dynamically loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Song Details Section (Initially Hidden) -->
+  <section id="song-details" class="song-details-section" style="display: none;">
+    <div class="container">
+      <div class="back-button">
+        <a href="#" id="backToDiscography"><i class="fas fa-arrow-left"></i> Back to Discography</a>
+      </div>
+      
+      <div class="song-header">
+        <div class="song-cover">
+          <!-- Cover image will be dynamically loaded -->
+          <img src="https://via.placeholder.com/500x500/1a1a1a/ff0000?text=Loading..." alt="Song Cover">
+          <div class="play-button">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        
+        <div class="song-info">
+          <!-- This content will be dynamically populated -->
+          <h1 id="songTitle">Loading...</h1>
+          <p class="artist">SIN</p>
+          <p class="album" id="songAlbum">Loading...</p>
+          
+          <div class="song-meta">
+            <span class="release-date" id="songReleaseDate">Loading...</span>
+            <span class="duration" id="songDuration">Loading...</span>
+            <span class="plays" id="songPlays">Loading...</span>
+          </div>
+          
+          <div class="song-tags" id="songTags">
+            <!-- Tags will be dynamically added here -->
+          </div>
+          
+          <div class="streaming-links">
+            <a href="#" class="streaming-icon"><i class="fab fa-spotify"></i></a>
+            <a href="#" class="streaming-icon"><i class="fab fa-apple"></i></a>
+            <a href="#" class="streaming-icon"><i class="fab fa-soundcloud"></i></a>
+            <a href="#" class="streaming-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="song-content">
+        <div class="lyrics-container">
+          <h2>Lyrics</h2>
+          <div class="lyrics" id="songLyrics">
+            <!-- Lyrics will be dynamically added here -->
+            <p class="loading">Loading lyrics...</p>
+          </div>
+        </div>
+        
+        <div class="song-sidebar">
+          <div class="song-description">
+            <h3>About This Track</h3>
+            <p id="songDescription">Loading description...</p>
+          </div>
+          
+          <div class="song-credits">
+            <h3>Credits</h3>
+            <ul>
+              <li><strong>Written by:</strong> SIN</li>
+              <li><strong>Produced by:</strong> SIN</li>
+              <li><strong>Mixed by:</strong> SIN</li>
+              <li><strong>Mastered by:</strong> SIN</li>
+            </ul>
+          </div>
+          
+          <div class="more-songs">
+            <h3>More From This Album</h3>
+            <ul id="moreSongs">
+              <!-- More songs will be dynamically added here -->
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -243,7 +367,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <a href="index.html">SIN</a>
+          <a href="#home">SIN</a>
           <p>Sinner's Production</p>
         </div>
         <div class="footer-links">
@@ -252,6 +376,7 @@
             <ul>
               <li><a href="#home">Home</a></li>
               <li><a href="#music">Music</a></li>
+              <li><a href="#discography">Discography</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#performances">Shows</a></li>
               <li><a href="#contact">Contact</a></li>
@@ -329,5 +454,7 @@
 
   <!-- JavaScript -->
   <script src="js/main.js"></script>
+  <script src="js/discography.js"></script>
+  <script src="js/single-page.js"></script>
 </body>
 </html>
