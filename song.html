@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song Details | SIN</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/song.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Sticky Header -->
+  <header class="sticky-header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">SIN</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#music">Music</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#performances">Shows</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Song Details Section -->
+  <section class="song-details">
+    <div class="container">
+      <div class="back-button">
+        <a href="index.html#music"><i class="fas fa-arrow-left"></i> Back to Music</a>
+      </div>
+      
+      <div class="song-header">
+        <div class="song-cover">
+          <!-- Cover image will be dynamically loaded -->
+          <img src="https://via.placeholder.com/500x500/1a1a1a/ff0000?text=Loading..." alt="Song Cover">
+          <div class="play-button">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        
+        <div class="song-info">
+          <!-- This content will be dynamically populated -->
+          <h1 id="songTitle">Loading...</h1>
+          <p class="artist">SIN</p>
+          <p class="album" id="songAlbum">Loading...</p>
+          
+          <div class="song-meta">
+            <span class="release-date" id="songReleaseDate">Loading...</span>
+            <span class="duration" id="songDuration">Loading...</span>
+            <span class="plays" id="songPlays">Loading...</span>
+          </div>
+          
+          <div class="song-tags" id="songTags">
+            <!-- Tags will be dynamically added here -->
+          </div>
+          
+          <div class="streaming-links">
+            <a href="#" class="streaming-icon"><i class="fab fa-spotify"></i></a>
+            <a href="#" class="streaming-icon"><i class="fab fa-apple"></i></a>
+            <a href="#" class="streaming-icon"><i class="fab fa-soundcloud"></i></a>
+            <a href="#" class="streaming-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="song-content">
+        <div class="lyrics-container">
+          <h2>Lyrics</h2>
+          <div class="lyrics" id="songLyrics">
+            <!-- Lyrics will be dynamically added here -->
+            <p class="loading">Loading lyrics...</p>
+          </div>
+        </div>
+        
+        <div class="song-sidebar">
+          <div class="song-description">
+            <h3>About This Track</h3>
+            <p id="songDescription">Loading description...</p>
+          </div>
+          
+          <div class="song-credits">
+            <h3>Credits</h3>
+            <ul>
+              <li><strong>Written by:</strong> SIN</li>
+              <li><strong>Produced by:</strong> SIN</li>
+              <li><strong>Mixed by:</strong> SIN</li>
+              <li><strong>Mastered by:</strong> SIN</li>
+            </ul>
+          </div>
+          
+          <div class="more-songs">
+            <h3>More From This Album</h3>
+            <ul id="moreSongs">
+              <!-- More songs will be dynamically added here -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="index.html">SIN</a>
+          <p>Sinner's Production</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-nav">
+            <h3>Navigation</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="index.html#music">Music</a></li>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#performances">Shows</a></li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-socials">
+            <h3>Follow</h3>
+            <div class="social-links">
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-soundcloud"></i></a>
+            </div>
+          </div>
+          <div class="footer-legal">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Sinner's Production. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/song.js"></script>
+</body>
+</html>
