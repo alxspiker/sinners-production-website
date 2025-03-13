@@ -1,4 +1,4 @@
-// JavaScript for KRONOS Website
+// JavaScript for SIN Website
 
 document.addEventListener('DOMContentLoaded', function() {
   // Elements
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
   trackItems.forEach(item => {
     item.addEventListener('click', function() {
       const trackTitle = this.querySelector('.track-info h4').textContent;
-      const trackArtist = 'KRONOS';
+      const trackArtist = 'SIN';
       const trackDuration = this.querySelector('.track-time').textContent;
       
       // Update music player
